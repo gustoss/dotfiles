@@ -1,0 +1,68 @@
+eval "$(oh-my-posh init zsh --config https://gist.githubusercontent.com/gustoss/f78f5869dac069707abf86240d1905aa/raw/08f92e2dd8b0bd0ae284f3c25b558c5922313004/gusto.omp.json)" 
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.zsh_histfile
+HISTSIZE=10000
+SAVEHIST=10000
+setopt appendhistory
+
+bindkey -e
+bindkey "^[[1;3C" forward-word
+bindkey "^[[1;3D" backward-word
+# End of lines configured by zsh-newuser-install
+autoload -Uz compinit
+compinit
+
+eval "$(atuin init zsh)"
+
+# Alias
+alias ..='cd ..'
+alias ..2='cd ../..'
+alias cat="batcat --style=auto"
+alias ll="eza -la --icons='auto' --color='auto' -a -h --time-style='+%d/%b/%y %H:%M:%S'"
+alias nv="nvim"
+alias grep='grep --color=auto'
+alias op='op.exe'
+alias ssh='ssh.exe'
+alias ssh-add='ssh-add.exe'
+alias gti='git'
+alias gs='git status'
+alias gd='git diff'
+alias gc='git commit'
+
+{{- if eq .chezmopi.username "asimoes" }}
+alias cd_doc='cd ~/meli_repo/fury_point-pos-documentation'
+{{- end }}
+
+. "$HOME/.cargo/env"
+
+{{- if eq .chezmoi.username "gusto" }}
+export PATH="/home/gusto/lua-language-server/bin:/usr/local/cuda-11.8/bin:$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/gusto/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/gusto/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/gusto/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/gusto/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
+export SUMO_HOME="/usr/share/sumo"
+source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
+
+# fnm
+FNM_PATH="/home/gusto/.local/share/fnm"
+if [ -d "$FNM_PATH" ]; then
+  export PATH="/home/gusto/.local/share/fnm:$PATH"
+  eval "`fnm env`"
+fi
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
