@@ -9,7 +9,8 @@ return {
                 default_config = {
                     cmd = { 
                         '/home/asimoes/.scripts/clangd_cmd.sh', 
-                        'q92_1.5.0'
+                        'mp35s1.9.0',
+                        '/home/asimoes/meli_repo/fury_point-pos-mp35s'
                     },
                     filetypes = { 'c', 'h' },
                     -- on_new_config = function(new_config, new_root_dir)
@@ -31,5 +32,8 @@ return {
             } 
         end
         lsp.q92_lsp.setup({})
+        lsp.pyright.setup({})
+        lsp.lua_ls.setup({})
+        lsp.bashls.setup({})
     end,
 }

@@ -28,6 +28,7 @@ alias cat="bat -A --style=auto"
 alias ll="eza -la --icons='auto' --color='auto' -a -h --time-style='+%d/%b/%y %H:%M:%S'"
 alias nv="nvim"
 alias grep='grep --color=auto'
+alias meli="$HOME/.scripts/meli_cmd.sh"
 alias op='op.exe'
 alias ssh='ssh.exe'
 alias ssh-add='ssh-add.exe'
@@ -42,15 +43,15 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{- if eq .chezmoi.username "asimoes" }}
 
 # Alias to meli_repo/projects
-export HOME_MELI_PROJECT='$HOME/meli_repo'
-alias cd_mp35='cd $HOME_MELI_PROJECT/fury_point-pos-mp35'
-alias cd_mp35s='cd $HOME_MELI_PROJECT/fury_point-pos-mp35s'
-alias cd_q92='cd $HOME_MELI_PROJECT/fury_point-pos-q92'
-alias cd_sim='cd $HOME_MELI_PROJECT/fury_point-pos-simulator'
-alias cd_unif='cd $HOME_MELI_PROJECT/fury_point-unified-payment-configs'
-alias cd_builder='cd $HOME_MELI_PROJECT/fury_point-pos-builder'
-alias cd_simb='cd $HOME_MELI_PROJECT/fury_point-pos-simulator-builder'
-alias cd_doc='cd $HOME_MELI_PROJECT/fury_point-pos-documentation'
+export HOME_MELI_PROJECT="$HOME/meli_repo"
+alias cd_mp35="cd $HOME_MELI_PROJECT/fury_point-pos-mp35"
+alias cd_mp35s="cd $HOME_MELI_PROJECT/fury_point-pos-mp35s"
+alias cd_q92="cd $HOME_MELI_PROJECT/fury_point-pos-q92"
+alias cd_sim="cd $HOME_MELI_PROJECT/fury_point-pos-simulator"
+alias cd_unif="cd $HOME_MELI_PROJECT/fury_point-unified-payment-configs"
+alias cd_builder="cd $HOME_MELI_PROJECT/fury_point-pos-builder"
+alias cd_simb="cd $HOME_MELI_PROJECT/fury_point-pos-simulator-builder"
+alias cd_doc="cd $HOME_MELI_PROJECT/fury_point-pos-documentation"
 
 source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 export RANGER_FURY_LOCATION=/home/asimoes/.fury #Added by Fury CLI

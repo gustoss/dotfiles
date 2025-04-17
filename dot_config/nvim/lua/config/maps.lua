@@ -17,10 +17,10 @@ kset('n', 'O',  'O<Esc>j', opts)
 kset('n', 'OO',  'O', opts)
 
 kset('', '<C-;>', 'gcc', opts)
-kset('n', '<leader>q', ':qa<CR>', opts)
+kset('n', '<leader>q', ':q<CR>', opts)
 kset('n', '<leader>qq', ':qa!<CR>', opts)
 kset('n', '<leader>w', ':w<CR>', opts)
-kset('n', '<leader>wq', ':wqa<CR>', opts)
+kset('n', '<leader>wq', ':wq<CR>', opts)
 kset('n', '<leader>wqq', ':wqa!<CR>', opts)
 
 -- Tree File
@@ -45,4 +45,11 @@ kset('', '<A-Left>', 'gT', opts)
 
 -- YankBank
 kset('', '<leader>y', ':YankBank<CR>', opts)
+
+-- Floaterm
+kset('n', '<F7>', ':FloatermNew<CR>', opts)
+kset('n', '<F8>', ':FloatermPrev<CR>', opts)
+kset('n', '<F9>', ':FloatermNext<CR>', opts)
+kset('n', '<F12>', ':FloatermToggle<CR>', opts)
+
 
