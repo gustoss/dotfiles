@@ -1,5 +1,9 @@
-export PATH=$PATH:$HOME/.local/bin
-eval "$(oh-my-posh init zsh --config https://gist.githubusercontent.com/gustoss/f78f5869dac069707abf86240d1905aa/raw/08f92e2dd8b0bd0ae284f3c25b558c5922313004/gusto.omp.json)" 
+#!/usr/bin/zsh
+
+export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin/"
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+
+eval "$(oh-my-posh init zsh --config https://gist.githubusercontent.com/gustoss/f78f5869dac069707abf86240d1905aa/raw/5a2fddaa7aeba4a2a24e9f0ab736163ce5e346ae/gusto.omp.json)" 
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_histfile
@@ -8,38 +12,36 @@ SAVEHIST=10000
 setopt appendhistory
 
 bindkey -e
-bindkey "^[[1;3C" forward-word
-bindkey "^[[1;3D" backward-word
+bindkey "^[[C" forward-word
+bindkey "^[[D" backward-word
 # End of lines configured by zsh-newuser-install
 autoload -Uz compinit
 compinit
 
 . "$HOME/.cargo/env"
-. "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
 export PATH=$PATH:$HOME/.local/share/cargo/bin/ezasource
-export EDITOR='nvim'
+export EDITOR='code --wait'
 
-# Alias
-alias ..='cd ..'
-alias ..2='cd ../..'
+# Geral Alias
+alias ..="cd .."
+alias ..2="cd ../.."
 alias cat="bat -A --style=auto"
 alias ll="eza -la --icons='auto' --color='auto' -a -h --time-style='+%d/%b/%y %H:%M:%S'"
 alias nv="nvim"
-alias grep='grep --color=auto'
-alias meli="$HOME/.scripts/meli_cmd.sh"
-alias op='op.exe'
-alias ssh='ssh.exe'
-alias ssh-add='ssh-add.exe'
-alias gti='git'
-alias gs='git status'
-alias ga='git add'
-alias gd='git diff'
-alias gc='git commit'
+alias grep="grep --color=auto"
+alias op="op.exe"
+alias ssh="ssh.exe"
+alias ssh-add="ssh-add.exe"
+alias gti="git"
+alias gst="git status"
+alias gad="git add"
+alias gdf="git diff"
+alias gcm="git commit -m"
+alias chm="chezmoi"
 
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-
+# INIT Personal Profile
 {{- if eq .chezmoi.username "asimoes" }}
 
 # Alias to meli_repo/projects
@@ -52,6 +54,9 @@ alias cd_unif="cd $HOME_MELI_PROJECT/fury_point-unified-payment-configs"
 alias cd_builder="cd $HOME_MELI_PROJECT/fury_point-pos-builder"
 alias cd_simb="cd $HOME_MELI_PROJECT/fury_point-pos-simulator-builder"
 alias cd_doc="cd $HOME_MELI_PROJECT/fury_point-pos-documentation"
+alias cd_unif="cd $HOME_MELI_PROJECT/fury_point-unified-payment-config"
+
+alias meli="$HOME/.scripts/meli_cmd.sh"
 
 source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 export RANGER_FURY_LOCATION=/home/asimoes/.fury #Added by Fury CLI
@@ -63,7 +68,9 @@ export PATH="$PATH:$FURY_BIN_LOCATION" # Added by Fury CLI installation process
 # Added by Fury CLI installation process
 
 {{- end }}
+# END Personal Profile
 
+# INIT Meli Profile
 {{- if eq .chezmoi.username "gusto" }}
 export PATH="/home/gusto/lua-language-server/bin:/usr/local/cuda-11.8/bin:$HOME/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
@@ -92,5 +99,5 @@ if [ -d "$FNM_PATH" ]; then
   export PATH="/home/gusto/.local/share/fnm:$PATH"
   eval "`fnm env`"
 fi
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{- end }}
+# END Meli Profile
