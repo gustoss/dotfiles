@@ -1,5 +1,6 @@
 #!/usr/bin/zsh
 
+export PATH=$PATH:$HOME/.local/bin
 export PATH="$PATH:/home/linuxbrew/.linuxbrew/bin/"
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
@@ -12,8 +13,8 @@ SAVEHIST=10000
 setopt appendhistory
 
 bindkey -e
-bindkey "^[[C" forward-word
-bindkey "^[[D" backward-word
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 # End of lines configured by zsh-newuser-install
 autoload -Uz compinit
 compinit
