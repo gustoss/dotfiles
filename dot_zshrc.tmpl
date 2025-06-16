@@ -23,7 +23,7 @@ compinit
 eval "$(atuin init zsh)"
 
 export PATH=$PATH:$HOME/.local/share/cargo/bin/ezasource
-export EDITOR='code --wait'
+export EDITOR="code --wait"
 
 # Geral Alias
 alias ..="cd .."
@@ -39,11 +39,28 @@ alias gti="git"
 alias gst="git status"
 alias gad="git add"
 alias gdf="git diff"
+alias grc="git rebase --continue"
 alias gcm="git commit -m"
 alias chm="chezmoi"
 
+# Função para commit e push automático
+gcp() {
+    if [ -z "$1" ]; then
+        echo "Erro: É necessário fornecer uma mensagem de commit"
+        echo "Uso: gcm 'sua mensagem de commit'"
+        return 1
+    fi
+    
+    git commit -m "$1" && git push
+}
+
 # INIT Personal Profile
 {{- if eq .chezmoi.username "asimoes" }}
+
+. "$HOME/.atuin/bin/env"
+eval "$(atuin init zsh)"
+
+alias op="/mnt/c/Users/asimoes/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
 
 # Alias to meli_repo/projects
 export HOME_MELI_PROJECT="$HOME/meli_repo"
