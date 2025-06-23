@@ -13,19 +13,36 @@ SAVEHIST=10000
 setopt appendhistory
 
 bindkey -e
-bindkey "^[[1;5C" forward-word
-bindkey "^[[1;5D" backward-word
+bindkey "^[[1;5C" forward-word # Ctrl + Right
+bindkey "^[[1;5D" backward-word # Ctrl + Left
 # End of lines configured by zsh-newuser-install
+
+# Autocompletion
 autoload -Uz compinit
 compinit
+# End of autocompletion
 
+# Cargo/Rust Initialization
 . "$HOME/.cargo/env"
 eval "$(atuin init zsh)"
+eval "$(zoxide init zsh)"
 
 export PATH=$PATH:$HOME/.local/share/cargo/bin/ezasource
-export EDITOR="code --wait"
+export EDITOR="code --wait" 
 
-# Geral Alias
+# Functions
+# Function to automatically commit and push
+gitCommitAndPush() {
+    if [ -z "$1" ]; then
+        echo "Error: A commit message must be provided"
+        echo "Usage: gcm 'your commit message'"
+        return 1
+    fi
+    
+    git commit -m "$1" && git push
+}
+
+# General Alias
 alias ..="cd .."
 alias ..2="cd ../.."
 alias cat="bat -A --style=auto"
@@ -35,27 +52,22 @@ alias grep="grep --color=auto"
 alias op="op.exe"
 alias ssh="ssh.exe"
 alias ssh-add="ssh-add.exe"
+alias chm="chezmoi"
+
+# Git Alias
 alias gti="git"
 alias gst="git status"
 alias gad="git add"
 alias gdf="git diff"
 alias grc="git rebase --continue"
 alias gcm="git commit -m"
-alias chm="chezmoi"
+alias gcp="gitCommitAndPush"
+alias lg="lazygit"
 
-# Função para commit e push automático
-gcp() {
-    if [ -z "$1" ]; then
-        echo "Erro: É necessário fornecer uma mensagem de commit"
-        echo "Uso: gcm 'sua mensagem de commit'"
-        return 1
-    fi
-    
-    git commit -m "$1" && git push
-}
-
-# INIT Personal Profile
 {{- if eq .chezmoi.username "asimoes" }}
+# ------------------------------------------------------------
+#       INIT Meli Profile
+# ------------------------------------------------------------
 
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
@@ -86,10 +98,11 @@ export PATH="$PATH:$FURY_BIN_LOCATION" # Added by Fury CLI installation process
 # Added by Fury CLI installation process
 
 {{- end }}
-# END Personal Profile
 
-# INIT Meli Profile
 {{- if eq .chezmoi.username "gusto" }}
+# ------------------------------------------------------------
+#       INIT Personal Profile
+# ------------------------------------------------------------
 export PATH="/home/gusto/lua-language-server/bin:/usr/local/cuda-11.8/bin:$HOME/.local/bin:$PATH"
 export LD_LIBRARY_PATH="/usr/local/cuda-11.8/lib64:$LD_LIBRARY_PATH"
 
@@ -118,4 +131,3 @@ if [ -d "$FNM_PATH" ]; then
   eval "`fnm env`"
 fi
 {{- end }}
-# END Meli Profile
