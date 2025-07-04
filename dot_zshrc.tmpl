@@ -6,6 +6,18 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 
 eval "$(oh-my-posh init zsh --config https://gist.githubusercontent.com/gustoss/f78f5869dac069707abf86240d1905aa/raw/5a2fddaa7aeba4a2a24e9f0ab736163ce5e346ae/gusto.omp.json)" 
 
+# Antigen
+source $HOME/.zsh_config/antigen.zsh
+antigen bundle zsh-users/zsh-completions
+antigen bundle zsh-users/zsh-autosuggestions
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+antigen apply
+
+# Configure autosuggestions
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4e4e4e"
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_histfile
 HISTSIZE=10000
@@ -43,8 +55,8 @@ gitCommitAndPush() {
 }
 
 # General Alias
-alias ..="cd .."
-alias ..2="cd ../.."
+alias ..="z .."
+alias ..2="z ../.."
 alias cat="bat -A --style=auto"
 alias ll="eza -la --icons='auto' --color='auto' -a -h --time-style='+%d/%b/%y %H:%M:%S'"
 alias nv="nvim"
@@ -72,19 +84,8 @@ alias lg="lazygit"
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
-alias op="/mnt/c/Users/asimoes/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
 
-# Alias to meli_repo/projects
-export HOME_MELI_PROJECT="$HOME/meli_repo"
-alias cd_mp35="cd $HOME_MELI_PROJECT/fury_point-pos-mp35"
-alias cd_mp35s="cd $HOME_MELI_PROJECT/fury_point-pos-mp35s"
-alias cd_q92="cd $HOME_MELI_PROJECT/fury_point-pos-q92"
-alias cd_sim="cd $HOME_MELI_PROJECT/fury_point-pos-simulator"
-alias cd_unif="cd $HOME_MELI_PROJECT/fury_point-unified-payment-configs"
-alias cd_builder="cd $HOME_MELI_PROJECT/fury_point-pos-builder"
-alias cd_simb="cd $HOME_MELI_PROJECT/fury_point-pos-simulator-builder"
-alias cd_doc="cd $HOME_MELI_PROJECT/fury_point-pos-documentation"
-alias cd_unif="cd $HOME_MELI_PROJECT/fury_point-unified-payment-config"
+alias op="/mnt/c/Users/asimoes/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
 
 alias meli="$HOME/.scripts/meli_cmd.sh"
 
