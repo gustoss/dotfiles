@@ -20,9 +20,10 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # Lines configured by zsh-newuser-install
 HISTFILE=~/.zsh_histfile
-HISTSIZE=10000
-SAVEHIST=10000
-setopt appendhistory
+HISTSIZE=0
+SAVEHIST=0
+rm -f $HISTFILE
+setopt NO_HISTORY
 
 bindkey -e
 bindkey "^[[1;5C" forward-word # Ctrl + Right
@@ -38,6 +39,9 @@ compinit
 . "$HOME/.cargo/env"
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
+
+# Configure autoenv
+source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 
 export PATH=$PATH:$HOME/.local/share/cargo/bin/ezasource
 export EDITOR="code --wait" 
@@ -89,7 +93,6 @@ alias op="/mnt/c/Users/asimoes/AppData/Local/Microsoft/WinGet/Packages/AgileBits
 
 alias meli="$HOME/.scripts/meli_cmd.sh"
 
-source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 export RANGER_FURY_LOCATION=/home/asimoes/.fury #Added by Fury CLI
 export RANGER_FURY_VENV_LOCATION=/home/asimoes/.fury/fury_venv #Added by Fury CLI
 
@@ -123,7 +126,6 @@ unset __conda_setup
 # <<< conda initialize <<<
 
 export SUMO_HOME="/usr/share/sumo"
-source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 
 # fnm
 FNM_PATH="/home/gusto/.local/share/fnm"
