@@ -7,87 +7,39 @@ eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 eval "$(oh-my-posh init zsh --config https://gist.githubusercontent.com/gustoss/f78f5869dac069707abf86240d1905aa/raw/5a2fddaa7aeba4a2a24e9f0ab736163ce5e346ae/gusto.omp.json)" 
 
 # Antigen
-source $HOME/.zsh_config/antigen.zsh
+source $ZDOTDIR/antigen.zsh
 antigen bundle zsh-users/zsh-completions
 antigen bundle zsh-users/zsh-autosuggestions
 antigen bundle zsh-users/zsh-syntax-highlighting
-
 antigen apply
 
 # Configure autosuggestions
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#4e4e4e"
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
-# Lines configured by zsh-newuser-install
-HISTFILE=~/.zsh_histfile
-HISTSIZE=0
-SAVEHIST=0
-rm -f $HISTFILE
-setopt NO_HISTORY
-
-bindkey -e
-bindkey "^[[1;5C" forward-word # Ctrl + Right
-bindkey "^[[1;5D" backward-word # Ctrl + Left
-# End of lines configured by zsh-newuser-install
-
-# Autocompletion
-autoload -Uz compinit
-compinit
-# End of autocompletion
-
 # Cargo/Rust Initialization
 . "$HOME/.cargo/env"
+. "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 eval "$(zoxide init zsh)"
 
 # Configure autoenv
 source ~/.dotfiles/lib/zsh-autoenv/autoenv.zsh
 
-export PATH=$PATH:$HOME/.local/share/cargo/bin/ezasource
-export EDITOR="code --wait" 
+export PATH=$PATH:$HOME/.local/share/cargo/bin/ezasource 
 
-# Functions
-# Function to automatically commit and push
-gitCommitAndPush() {
-    if [ -z "$1" ]; then
-        echo "Error: A commit message must be provided"
-        echo "Usage: gcm 'your commit message'"
-        return 1
-    fi
-    
-    git commit -m "$1" && git push
-}
+# Setup keybindings for zsh
+bindkey -e
+bindkey "^[[1;5C" forward-word # Ctrl + Right
+bindkey "^[[1;5D" backward-word # Ctrl + Left
 
-# General Alias
-alias ..="z .."
-alias ..2="z ../.."
-alias cat="bat -A --style=auto"
-alias ll="eza -la --icons='auto' --color='auto' -a -h --time-style='+%d/%b/%y %H:%M:%S'"
-alias nv="nvim"
-alias grep="grep --color=auto"
-alias op="op.exe"
-alias ssh="ssh.exe"
-alias ssh-add="ssh-add.exe"
-alias chm="chezmoi"
-
-# Git Alias
-alias gti="git"
-alias gst="git status"
-alias gad="git add"
-alias gdf="git diff"
-alias grc="git rebase --continue"
-alias gcm="git commit -m"
-alias gcp="gitCommitAndPush"
-alias lg="lazygit"
+source $ZDOTDIR/aliases
+source $ZDOTDIR/completions.zsh
 
 {{- if eq .chezmoi.username "asimoes" }}
 # ------------------------------------------------------------
 #       INIT Meli Profile
 # ------------------------------------------------------------
-
-. "$HOME/.atuin/bin/env"
-eval "$(atuin init zsh)"
-
 
 alias op="/mnt/c/Users/asimoes/AppData/Local/Microsoft/WinGet/Packages/AgileBits.1Password.CLI_Microsoft.Winget.Source_8wekyb3d8bbwe/op.exe"
 

@@ -1,0 +1,44 @@
+
+# Functions
+# Function to automatically commit and push
+gitCommitAndPush() {
+    if [ -z "$1" ]; then
+        echo "Error: A commit message must be provided"
+        echo "Usage: gcm 'your commit message'"
+        return 1
+    fi
+    
+    git commit -m "$1" && git push
+}
+
+gitAdd() {
+    if [ -z "$1" ]; then
+        echo "Add all files to the staging area"
+        git add .
+    else
+        git add $@
+    fi
+}
+
+# General Alias
+alias ..="z .."
+alias ..2="z ../.."
+alias cat="bat -A --style=auto"
+alias ll="eza -la --icons='auto' --color='auto' -a -h --time-style='+%d/%b/%y %H:%M:%S'"
+alias nv="nvim"
+alias grep="grep --color=auto"
+alias op="op.exe"
+alias ssh="ssh.exe"
+alias ssh-add="ssh-add.exe"
+alias chm="chezmoi"
+alias cd="z"
+
+# Git Alias
+alias gti="git"
+alias gst="git status"
+alias gad="gitAdd"
+alias gdf="git diff"
+alias grc="git rebase --continue"
+alias gcm="git commit -m"
+alias gcp="gitCommitAndPush"
+alias lg="lazygit"

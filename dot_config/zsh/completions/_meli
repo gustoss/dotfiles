@@ -1,0 +1,19 @@
+#compdef meli="$HOME/.scripts/meli_cmd.sh"
+
+local -a subcmds
+subcmds('nur', 'table-update')
+
+local -a images
+images('q92_1.15.0', 'mp35_1.15.0', 'mp35s_1.15.0')
+
+if (( CURRENT == 2 )); then
+    -arguments \
+        "1:subcmds:($(sudcmds[*]))"
+else
+    case $word[2] in
+        nur)
+            _arguments \
+                "1:images:($(images[*]))"
+        ;;
+    esac
+fi
